@@ -1,0 +1,11 @@
+id,name,email,age,country,department,salary
+1,Alice Johnson,alice@example.com,28,USA,Engineering,95000
+2,Bob Smith,bob@example.com,34,UK,Sales,78000
+3,Charlie Brown,charlie@example.com,45,Canada,Marketing,82000
+4,Diana Prince,diana@example.com,29,USA,Engineering,98000
+5,Ethan Hunt,ethan@example.com,38,USA,Operations,88000
+6,Fiona Green,fiona@example.com,31,Australia,HR,72000
+7,George Wilson,george@example.com,42,UK,Finance,105000
+8,Hannah Lee,hannah@example.com,26,Singapore,Engineering,92000
+9,Ivan Petrov,ivan@example.com,35,Russia,Sales,75000
+10,Julia Roberts,julia@example.com,33,USA,Marketing,85000

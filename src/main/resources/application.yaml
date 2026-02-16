@@ -1,0 +1,66 @@
+application:
+  name: "fan-out-engine"
+  version: "1.0.0"
+
+source:
+  type: "CSV"  # Options: CSV, JSONL, FIXED_WIDTH
+  filePath: "sample-data.csv"
+  batchSize: 1000
+
+threadPool:
+  type: "VIRTUAL"  # Options: VIRTUAL, FORK_JOIN, FIXED
+  corePoolSize: 10
+  maxPoolSize: 100
+
+sinks:
+  - name: "REST_API"
+    type: "REST"
+    enabled: true
+    endpoint: "http://localhost:8080/api/data"
+    rateLimit: 50  # requests per second
+    retryAttempts: 3
+    timeoutMs: 5000
+    transformation: "JSON"
+    
+  - name: "GRPC_SERVICE"
+    type: "GRPC"
+    enabled: true
+    endpoint: "localhost:9090"
+    rateLimit: 100
+    retryAttempts: 3
+    timeoutMs: 3000
+    transformation: "PROTOBUF"
+    
+  - name: "MESSAGE_QUEUE"
+    type: "MQ"
+    enabled: true
+    endpoint: "localhost:5672"
+    topic: "data.events"
+    rateLimit: 200
+    retryAttempts: 3
+    timeoutMs: 2000
+    transformation: "XML"
+    
+  - name: "WIDE_COLUMN_DB"
+    type: "DB"
+    enabled: true
+    endpoint: "localhost:9042"
+    keyspace: "fanout"
+    table: "records"
+    rateLimit: 1000
+    retryAttempts: 3
+    timeoutMs: 1000
+    transformation: "AVRO"
+
+backpressure:
+  queueCapacity: 10000
+  strategy: "BLOCK"  # Options: BLOCK, DROP, BUFFER
+
+monitoring:
+  statusUpdateIntervalSeconds: 5
+  metricsEnabled: true
+
+resilience:
+  deadLetterQueueEnabled: true
+  deadLetterPath: "dlq/"
+  circuitBreakerEnabled: false
