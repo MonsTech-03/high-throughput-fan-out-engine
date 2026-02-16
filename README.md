@@ -387,18 +387,3 @@ java -Xmx1g -jar target/fan-out-engine-1.0.0.jar
 - [ ] Schema evolution support
 - [ ] Exactly-once semantics with transaction support
 
-## 📜 License
-
-MIT License - See LICENSE file for details
-
-## 🤝 Contributing
-
-Contributions welcome! Please read CONTRIBUTING.md for guidelines.
-
-## 📬 Contact
-
-For questions or support, please open an issue in the repository.
-
----
-
-**Built with ❤️ using Java 21 Virtual Threads**
